@@ -150,6 +150,8 @@ namespace TimelineControl.Model
                 case TimeRangeDivideKind.Day1:
                 case TimeRangeDivideKind.Day2:
                 case TimeRangeDivideKind.MonthHalf:
+                case TimeRangeDivideKind.Month1:
+                case TimeRangeDivideKind.Month6:
                     return range.StartDateTime.ToString("MM月");
             }
             return "";

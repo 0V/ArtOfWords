@@ -20,6 +20,8 @@ namespace TimelineControl.Model
         Day1,
         Day2,
         MonthHalf,
+        Month1,
+        Month6,
     }
 
     public class TimeRangeDivider
@@ -27,6 +29,18 @@ namespace TimelineControl.Model
         public static TimeRangeDivideKind GetKind(TimeRange range)
         {
             TimeSpan span = new TimeSpan(range.EndDateTime.Ticks - range.StartDateTime.Ticks);
+
+
+
+            if (span.TotalDays > 1098)
+            {
+                return TimeRangeDivideKind.Month6;
+            }
+
+            if (span.TotalDays > 367)
+            {
+                return TimeRangeDivideKind.Month1;
+            }
 
             if (span.TotalDays > 62)
             {
@@ -157,6 +171,7 @@ namespace TimelineControl.Model
                 }
                 return date.Add(span);
             }
+
             if (kind == TimeRangeDivideKind.MonthHalf)
             {
                 DateTime currentMonth = new DateTime(date.Year, date.Month, 1);
@@ -173,6 +188,24 @@ namespace TimelineControl.Model
                     }
                     return halfDay;
                 }
+
+                return date.AddTicks(diff.Ticks);
+            }
+
+            if (kind == TimeRangeDivideKind.Month1)
+            {
+                DateTime currentMonth = new DateTime(date.Year, date.Month, 1);
+                DateTime nextMonth = currentMonth.AddMonths(1);
+                DateTime diff = new DateTime(nextMonth.Ticks - date.Ticks);
+
+                return date.AddTicks(diff.Ticks);
+            }
+
+            if (kind == TimeRangeDivideKind.Month6)
+            {
+                DateTime currentMonth = new DateTime(date.Year, date.Month, 1);
+                DateTime nextMonth = currentMonth.AddMonths(6);
+                DateTime diff = new DateTime(nextMonth.Ticks - date.Ticks);
 
                 return date.AddTicks(diff.Ticks);
             }

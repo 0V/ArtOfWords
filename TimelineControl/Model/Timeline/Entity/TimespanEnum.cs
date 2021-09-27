@@ -22,5 +22,8 @@ namespace TimelineControl.Model
         Month4,
         Month6,
         Year1,
+        Year3,
+        Year5,
+        Year10,
     }
 }

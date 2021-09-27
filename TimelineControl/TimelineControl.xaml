@@ -6,7 +6,7 @@
             xmlns:CommonControls="clr-namespace:CommonControls;assembly=CommonControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="900" d:DesignWidth="600"
+             d:DesignHeight="900" d:DesignWidth="1417.52"
              Background="White"
              Loaded="UserControl_Loaded_1">
 
@@ -70,6 +70,9 @@
                             <ToggleButton Content="4ヶ月" IsChecked="{Binding Path=IsSpanSelectMonth4,Mode=TwoWay}"/>
                             <ToggleButton Content="6ヶ月" IsChecked="{Binding Path=IsSpanSelectMonth6,Mode=TwoWay}"/>
                             <ToggleButton Content="1年" IsChecked="{Binding Path=IsSpanSelectYear1,Mode=TwoWay}"/>
+                            <ToggleButton Content="3年" IsChecked="{Binding Path=IsSpanSelectYear3,Mode=TwoWay}"/>
+                            <ToggleButton Content="5年" IsChecked="{Binding Path=IsSpanSelectYear5,Mode=TwoWay}"/>
+                            <ToggleButton Content="10年" IsChecked="{Binding Path=IsSpanSelectYear10,Mode=TwoWay}"/>
                         </StackPanel>
                     </GroupBox>
                 </Border>

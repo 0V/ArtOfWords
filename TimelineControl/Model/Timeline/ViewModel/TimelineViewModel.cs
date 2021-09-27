@@ -55,6 +55,9 @@ namespace TimelineControl.Model
                 case TimespanEnum.Week2:
                     return dateTime.ToString("dd日 HH時");
                 case TimespanEnum.Year1:
+                case TimespanEnum.Year3:
+                case TimespanEnum.Year5:
+                case TimespanEnum.Year10:
                     return dateTime.ToString("yy年MM月");
             }
 
@@ -161,6 +164,12 @@ namespace TimelineControl.Model
                         return _startDateTime.AddDays(-7);
                     case TimespanEnum.Year1:
                         return _startDateTime.AddDays(-183);
+                    case TimespanEnum.Year3:
+                        return _startDateTime.AddDays(-548);
+                    case TimespanEnum.Year5:
+                        return _startDateTime.AddDays(-914);
+                    case TimespanEnum.Year10:
+                        return _startDateTime.AddDays(-1380);
                 }
                 return _startDateTime.AddYears(-1);
             }
@@ -207,6 +216,12 @@ namespace TimelineControl.Model
                         return _startDateTime.AddDays(7);
                     case TimespanEnum.Year1:
                         return _startDateTime.AddDays(183);
+                    case TimespanEnum.Year3:
+                        return _startDateTime.AddDays(548);
+                    case TimespanEnum.Year5:
+                        return _startDateTime.AddDays(914);
+                    case TimespanEnum.Year10:
+                        return _startDateTime.AddDays(-1380);
                 }
                 return _startDateTime.AddYears(1);
             }
@@ -253,6 +268,12 @@ namespace TimelineControl.Model
                         return _startDateTime.AddDays(14);
                     case TimespanEnum.Year1:
                         return _startDateTime.AddYears(1);
+                    case TimespanEnum.Year3:
+                        return _startDateTime.AddYears(3);
+                    case TimespanEnum.Year5:
+                        return _startDateTime.AddYears(5);
+                    case TimespanEnum.Year10:
+                        return _startDateTime.AddYears(10);
                 }
                 return _startDateTime.AddYears(1);
             }
@@ -267,6 +288,15 @@ namespace TimelineControl.Model
         {
             switch (TimeSpanSelect)
             {
+                case TimespanEnum.Year10:
+                    TimeSpanSelect = TimespanEnum.Year5;
+                    break;
+                case TimespanEnum.Year5:
+                    TimeSpanSelect = TimespanEnum.Year3;
+                    break;
+                case TimespanEnum.Year3:
+                    TimeSpanSelect = TimespanEnum.Year1;
+                    break;
                 case TimespanEnum.Year1:
                     TimeSpanSelect = TimespanEnum.Month6;
                     break;
@@ -316,7 +346,16 @@ namespace TimelineControl.Model
         {
             switch (TimeSpanSelect)
             {
+                case TimespanEnum.Year10:
+                    break;
+                case TimespanEnum.Year5:
+                    TimeSpanSelect = TimespanEnum.Year10;
+                    break;
+                case TimespanEnum.Year3:
+                    TimeSpanSelect = TimespanEnum.Year5;
+                    break;
                 case TimespanEnum.Year1:
+                    TimeSpanSelect = TimespanEnum.Year3;
                     break;
                 case TimespanEnum.Month6:
                     TimeSpanSelect = TimespanEnum.Year1;
@@ -626,6 +665,9 @@ namespace TimelineControl.Model
                     OnPropertyChanged("IsSpanSelectMonth4");
                     OnPropertyChanged("IsSpanSelectMonth6");
                     OnPropertyChanged("IsSpanSelectYear1");
+                    OnPropertyChanged("IsSpanSelectYear3");
+                    OnPropertyChanged("IsSpanSelectYear5");
+                    OnPropertyChanged("IsSpanSelectYear10");
                     OnPropertyChanged("UpperButtonText");
                     OnPropertyChanged("LowerButtonText");
 
@@ -861,7 +903,52 @@ namespace TimelineControl.Model
                 return _timeSpanSelect == TimespanEnum.Year1;
             }
         }
-#endregion
+
+        public bool IsSpanSelectYear3
+        {
+            set
+            {
+                if (value == true)
+                {
+                    TimeSpanSelect = TimespanEnum.Year3;
+                }
+            }
+            get
+            {
+                return _timeSpanSelect == TimespanEnum.Year3;
+            }
+        }
+
+        public bool IsSpanSelectYear5
+        {
+            set
+            {
+                if (value == true)
+                {
+                    TimeSpanSelect = TimespanEnum.Year5;
+                }
+            }
+            get
+            {
+                return _timeSpanSelect == TimespanEnum.Year5;
+            }
+        }
+
+        public bool IsSpanSelectYear10
+        {
+            set
+            {
+                if (value == true)
+                {
+                    TimeSpanSelect = TimespanEnum.Year10;
+                }
+            }
+            get
+            {
+                return _timeSpanSelect == TimespanEnum.Year10;
+            }
+        }
+        #endregion
 
         private DateTime _startDateTime;
 
