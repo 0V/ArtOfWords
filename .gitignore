@@ -10,6 +10,10 @@
 *.user
 *.sln.docstates
 
+# Visual Studio cache directory
+.vs/
+.vscode/
+
 # Build results
 
 [Dd]ebug/
