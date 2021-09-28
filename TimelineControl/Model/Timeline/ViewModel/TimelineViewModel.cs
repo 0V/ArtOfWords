@@ -221,7 +221,7 @@ namespace TimelineControl.Model
                     case TimespanEnum.Year5:
                         return _startDateTime.AddDays(914);
                     case TimespanEnum.Year10:
-                        return _startDateTime.AddDays(-1380);
+                        return _startDateTime.AddDays(1380);
                 }
                 return _startDateTime.AddYears(1);
             }
